@@ -1,4 +1,4 @@
-import { FeNotation } from './fe-notation.model'
+import { FeNotation } from './fe-notation'
 
 describe('FeNotation', () => {
 
