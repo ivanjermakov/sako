@@ -9,14 +9,31 @@ export enum File {
   H = 8,
 }
 
+export type Rank = number
+
 export class Square {
 
   file: File
-  row: number
+  rank: Rank
 
-  constructor(file: File, row: number) {
+  constructor(file: File, rank: Rank) {
     this.file = file
-    this.row = row
+    this.rank = rank
+  }
+
+  static fromAn(square: string): Square | undefined {
+    if (square.length != 2) {
+      return undefined
+    }
+    const [fileToken, rankToken] = square.split('')
+    const file = File[fileToken.toUpperCase()]
+    const rank = parseInt(rankToken)
+
+    if (file !== undefined && !isNaN(rank)) {
+      return new Square(file, rank)
+    } else {
+      return undefined
+    }
   }
 
 }

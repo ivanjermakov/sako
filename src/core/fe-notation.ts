@@ -4,7 +4,7 @@ import { Side } from './side'
 
 export class FeNotation {
 
-  static readonly NAMES = {
+  static readonly NAMES: { [name: string]: [Side, Piece] } = {
     'P': [Side.White, Piece.Pawn],
     'N': [Side.White, Piece.Knight],
     'B': [Side.White, Piece.Bishop],
@@ -20,14 +20,14 @@ export class FeNotation {
   }
   static readonly STARTING_POSITION = new FeNotation('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')
 
-  repr: string
+  readonly repr: string
 
   constructor(repr: string) {
     this.repr = repr
   }
 
   pretty(): string {
-    let tokens = this.repr.split(' ')
+    const tokens = this.repr.split(' ')
     const board = tokens[0]
     const meta = tokens.slice(1).join(' ')
 
